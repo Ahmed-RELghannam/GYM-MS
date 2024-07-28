@@ -1,0 +1,101 @@
+###
+POST http://127.0.0.1:8000/users/api/createuser/
+Content-Type: application/json
+
+
+{
+    "uid": "MTI",
+    "token": "carsdq-db4b16e027104f0cd4599f590a4f99a0",
+    "userType": "Q29hY2g",
+    "password": "123456"
+}
+
+###
+POST http://127.0.0.1:8000/users/api/login/
+Content-Type: application/json
+
+{"email":"ahmed@elghannam.co","password":"1234567"}
+
+
+###
+POST http://127.0.0.1:8000/users/api/PasswordResetRequest/
+Content-Type: application/json
+
+{"email":"ahmed@elghannam.co"}
+
+
+
+###
+POST http://127.0.0.1:8000/users/api/SetNewPassword/
+Content-Type: application/json
+
+{
+    "password":"1234567",
+    "token":"casjxx-e27b5f4ce328cad28bf25699992c0a25",
+    "uid":"MQ"
+
+}
+
+
+###
+
+GET  http://127.0.0.1:8000/users/api/CashierList/
+Content-Type: application/json
+Authorization: Token ec7146c5ccf6e8365972bac160015bbc0284530a
+
+
+###
+
+GET  http://127.0.0.1:8000/users/api/CochList/
+Content-Type: application/json
+Authorization: Token ec7146c5ccf6e8365972bac160015bbc0284530a
+
+###
+
+GET  http://127.0.0.1:8000/users/api/MemberList/
+Content-Type: application/json
+Authorization: Token ec7146c5ccf6e8365972bac160015bbc0284530a 
+
+
+
+
+###
+
+POST  http://127.0.0.1:8000/users/api/CreateCashier/
+Content-Type: application/json
+Authorization: Token e631136ef60c44aa3290b023ba94c86347514d82 
+
+
+{
+    "name": "John Doe",
+    "email": "john.doe@exampfffle.com",
+    "phone": "123456733890",
+    "nat_id": "987653343210",
+    "address": "123 Main St"
+}
+
+
+###
+
+POST  http://127.0.0.1:8000/users/api/CreateCoach/
+Content-Type: application/json
+Authorization: Token e631136ef60c44aa3290b023ba94c86347514d82 
+
+
+{
+    "name": "John Doe1",
+    "email": "john2.d3oe13@example.com",
+    "phone": "2222232222211222",
+    "nat_id": "9872654132222223210",
+    "address": "123 Main St"
+}
+
+
+###
+POST  http://127.0.0.1:8000/users/api/ReRequestCreationsMessage/
+Content-Type: application/json
+Authorization: Token e631136ef60c44aa3290b023ba94c86347514d82
+
+{
+  "email": "john2.d3oe13@example.com"
+}
