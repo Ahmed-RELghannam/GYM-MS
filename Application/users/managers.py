@@ -42,9 +42,10 @@ class UserManager(BaseUserManager):
     
 
     
-    def create_Coachuser(self, email, user_type_id=2, password=None, **extra_fields):
+    def create_Coachuser(self, email, user_type_id=3, password=None, **extra_fields):
         """Create a coach user with the given email and default user type id of 3."""
         return self.create_user(email, user_type_id, password, **extra_fields)
+    
     
     def create_Memberuser(self, email, user_type_id=4, password=None, **extra_fields):
         """Create a member user with the given email and default user type id of 4."""

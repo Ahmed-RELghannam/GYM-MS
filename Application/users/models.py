@@ -85,3 +85,14 @@ class Coach(models.Model):
     edite_date = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.name
+    
+
+
+class notifications(models.Model):
+    name = models.CharField(max_length=255)
+    datetime = models.DateTimeField(auto_now=True)
+
+
+
+    def __str__(self):
+            return self.name

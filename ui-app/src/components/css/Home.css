@@ -1,0 +1,29 @@
+/* styles.css */
+.home-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 2fr; /* 2 الكروت في كل عمود، وعمود الرسم البياني في الوسط */
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* كروت في عمودين */
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-container {
+    grid-column: span 2; /* عرض الرسم البياني على عمودين */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

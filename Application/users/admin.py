@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .user_type import UserType
-from .models import User,Member,Cashier,Coach
+from .models import User,Member,Cashier,Coach,notifications
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 
@@ -19,3 +19,4 @@ admin.site.register(Member)
 admin.site.register(UserType)
 admin.site.register(Cashier)
 admin.site.register(Coach)
+admin.site.register(notifications)

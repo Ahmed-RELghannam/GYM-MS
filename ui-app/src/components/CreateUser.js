@@ -8,7 +8,7 @@ const SetNewPasswordForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const { token, uid } = useParams(); // استخراج token و uid من معلمات URL
+  const {  userType,uid,token } = useParams(); // استخراج token و uid من معلمات URL
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,10 +21,12 @@ const SetNewPasswordForm = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/users/api/SetNewPassword/', {
-        password,
-        token,
+      const response = await axios.post('http://127.0.0.1:8000/users/api/createuser/', {
         uid,
+        token,
+        userType,
+        password,
+        
       });
 
       setShowModal(true); // عرض النافذة المنبثقة
@@ -45,10 +47,10 @@ const SetNewPasswordForm = () => {
       <Row className="w-100">
         <Col md={{ span: 4, offset: 4 }}>
           <Card className="p-4 shadow-lg rounded-3d">
-            <h2 className="text-center mb-4">Set New Password</h2>
+            <h2 className="text-center mb-4">Create user</h2>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formNewPassword">
-                <Form.Label>New Password</Form.Label>
+                <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter new password"
@@ -68,7 +70,7 @@ const SetNewPasswordForm = () => {
                 />
               </Form.Group>
               <Button variant="primary" type="submit" className="w-100 mt-3">
-                Change Password
+                Creat Your password User
               </Button>
             </Form>
           </Card>
@@ -79,7 +81,7 @@ const SetNewPasswordForm = () => {
         <Modal.Header closeButton>
           <Modal.Title>Success</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Password has been changed successfully. Please check your email.</Modal.Body>
+        <Modal.Body>User Has Created </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
             OK

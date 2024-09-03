@@ -29,17 +29,19 @@ class Discount(models.Model):
 
 # Definition of invoice
 class Invoice(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
-    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    
+    has_refunded = models.BooleanField(default=False)
     have_taxs = models.BooleanField(default=False)
     datetime = models.DateTimeField(auto_now=True)
     have_discount = models.BooleanField(default=False)
     have_private_coach = models.BooleanField(default=False)
-    cashier = models.ForeignKey(Cashier, on_delete=models.SET_NULL, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
     coach = models.ForeignKey(Coach, on_delete=models.SET_NULL, null=True,blank=True)
     discount = models.ForeignKey(Discount, on_delete=models.SET_NULL, null=True,blank=True)
-    has_refunded = models.BooleanField(default=False)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    cashier = models.ForeignKey(Cashier, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f"Invoice {self.id}"
@@ -56,3 +58,24 @@ class Subscription(models.Model):
 
     def __str__(self):
         return f"Subscription {self.id}"
+    
+
+
+
+class withdraw(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    value = models.PositiveIntegerField()
+    datetime = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Subscription {self.name}"
+
+
+class MemberAttandance(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    datetime = models.DateTimeField(auto_now=True)
+    note = models.TextField(null=True,blank=True)
+
+    def __str__(self):
+        return f"Subscription {self.member.name}"

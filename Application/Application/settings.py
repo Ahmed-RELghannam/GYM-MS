@@ -30,6 +30,12 @@ DEBUG = True
 SECRET_HEADER_VALUE = config('SECRET_HEADER_VALUE')
 
 
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+   
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,12 +45,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    'corsheaders',
     "users",
     "Billing",
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders',
+    
 ]
 
 MIDDLEWARE = [
@@ -53,7 +59,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    #'users.middleware.custom_header_middleware.CustomHeaderMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -61,10 +66,11 @@ MIDDLEWARE = [
 
 
 FRONTEND_URL = 'http://127.0.0.1:3000'
-ALLOWED_HOSTS =  ['127.0.0.1', 'localhost', 'cc-api-data.adobe.io',FRONTEND_URL]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'cc-api-data.adobe.io']
 
 CORS_ALLOWED_ORIGINS = [
-    FRONTEND_URL,
+    'http://127.0.0.1:3000',
+    'https://localhost:3000',
 ]
 
 CORS_ALLOW_METHODS = [

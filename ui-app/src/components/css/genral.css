@@ -1,0 +1,25 @@
+.button-as-div {
+    border: none; 
+    border-radius: 0; 
+    padding: 10px 20px; 
+    display: inline-block; 
+    cursor: pointer; 
+}
+
+
+.successMessage {
+    
+    text-align: center;
+    font-size: 14px;
+    z-index: 9999; 
+    margin: 0;
+    padding: 10px;
+   
+    
+}
+
+
+.invalid-feedback{
+    display: block;
+
+}

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Cashier, Coach, Member,User
+from .models import Cashier, Coach, Member,User,notifications
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -20,6 +20,11 @@ class ListCashierSerializer(serializers.ModelSerializer):
         model = Cashier
         fields = "__all__"
 
+
+class notificationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = notifications
+        fields = fields = ['name','datetime']
 
     
 
@@ -99,6 +104,72 @@ class CreateCashierUserSerializer(serializers.Serializer):
             'user': instance.user.id if instance.user else None,
         }
 
+
+
+class EditCashierUserSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Cashier
+        fields = ['name', 'email', 'phone', 'nat_id', 'address']
+
+    def validate_email(self, value):
+        instance = self.instance
+        if instance and value != instance.email and Cashier.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email is already in use.")
+        return value
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.email = validated_data.get('email', instance.email)
+        instance.phone = validated_data.get('phone', instance.phone)
+        instance.nat_id = validated_data.get('nat_id', instance.nat_id)
+        instance.address = validated_data.get('address', instance.address)
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        return {
+            'id': instance.id,
+            'name': instance.name,
+            'phone': instance.phone,
+            'email': instance.email,  
+            'nat_id': instance.nat_id,
+            'address': instance.address,
+            'user': instance.user.id if instance.user else None,
+        }
+    
+
+class EditCoachUserSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Coach
+        fields = ['name', 'email', 'phone', 'nat_id', 'address']
+
+    def validate_email(self, value):
+        instance = self.instance
+        if instance and value != instance.email and Coach.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email is already in use.")
+        return value
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.email = validated_data.get('email', instance.email)
+        instance.phone = validated_data.get('phone', instance.phone)
+        instance.nat_id = validated_data.get('nat_id', instance.nat_id)
+        instance.address = validated_data.get('address', instance.address)
+        instance.save()
+        return instance
+
+    def to_representation(self, instance):
+        return {
+            'id': instance.id,
+            'name': instance.name,
+            'phone': instance.phone,
+            'email': instance.email,  
+            'nat_id': instance.nat_id,
+            'address': instance.address,
+            'user': instance.user.id if instance.user else None,
+        }
 
 
 class CreateCoachUserSerializer(serializers.Serializer):
